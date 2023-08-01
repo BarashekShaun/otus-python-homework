@@ -1,7 +1,7 @@
 # To build the image, run "docker build . -t app" in a terminal.
 # To run the image, use the command "docker run -p {your port:}8000 -it app"
 
-FROM python:3.9-buster
+FROM python:3.11-buster
 
 WORKDIR /app
 
