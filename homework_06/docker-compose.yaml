@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./
+    environment:
+      CONFIG_CLASS: DevelopmentConfig
+      SQLALCHEMY_DATABASE_URI: postgresql://user:pswrd@0.0.0.0:5432/story
+
+    volumes:
+      - ./:/app
+    ports:
+      - "5050:5000"
+
+  pg:
+    image: postgres
+    environment:
+      POSTGRES_DB: story
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pswrd
+      PGDATA: /var/lib/postgresql/data/pgdata
+      PGUSER: postgres
+      user: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  db-data:
