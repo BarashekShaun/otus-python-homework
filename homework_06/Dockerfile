@@ -10,6 +10,6 @@ RUN pip install -r requirements.txt
 
 COPY . /
 
+RUN chmod +x ./prestart.sh
+ENTRYPOINT ["./prestart.sh"]
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]
-
-CMD ["flask", "db", "init"]
