@@ -1,0 +1,22 @@
+{% extends 'story/base.html' %}
+
+{% block title %}
+  Delete Story #{{ story.id }}
+{% endblock %}
+
+{% block body %}
+  <h2>Delete story <code>{{ story.title }}</code></h2>
+  <form method="post" class="row row-cols-1">
+    <p>Are you sure you want to delete this story?
+      This action cannot be undone.</p>
+    <div class="col">
+      <a
+        class="btn btn-success"
+        href="{{ url_for('story_app.detail', story_id=story.id) }}"
+      >Back</a>
+      <input class="my-2 my-md-3 btn btn-danger" type="submit" value="Delete">
+    </div>
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    {% block title %}
+      Base
+    {% endblock %}</title>
+
+
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+  >
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Homework_06</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-content"
+      aria-controls="navbar-content"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-content">
+      <ul class="navbar-nav me-auto">
+        {% for endpoint, title in [
+          ('about_app.about_list', 'About'),
+          ('story_app.list', 'Story'),
+        ] %}
+
+          {% set path = url_for(endpoint) %}
+          {% set is_current_path = path == request.path %}
+
+          <li class="nav-item">
+            <a
+              class="nav-link {{ 'active' if is_current_path }}"
+              aria-current="page"
+              href="{{ path }}"
+            >{{ title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  {% block body %}
+
+  {% endblock %}
+</div>
+
+{% block footer %}
+  <br>
+  &copy; BarashekShaun
+{% endblock %}
+{# after footer abc #}
+<!-- hello comment -->
+
+<script
+  src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
+>
+
+</script>
+</body>
+</html>
