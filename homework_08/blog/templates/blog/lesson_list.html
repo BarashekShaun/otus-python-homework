@@ -1,0 +1,16 @@
+{% extends 'root.html' %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block main %}
+    <h2>Lessons</h2>
+    <a href="{% url 'lessons:create' %}">New</a>
+    <ul>
+        {% for lesson in lesson_list %}
+            <li>{{ lesson }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
